@@ -9,9 +9,20 @@ import SwiftUI
 
 @main
 struct CVSCodeTaskApp: App {
+    
+    init() {
+        registerDependencies()
+    }
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ImageGalleryView()
         }
     }
+    
+    private func registerDependencies() {
+        DependencyManager.register(type: NetworkManagable.self, NetworkManager())
+        DependencyManager.register(type: ImageManagable.self, ImageManager())
+    }
+    
 }
