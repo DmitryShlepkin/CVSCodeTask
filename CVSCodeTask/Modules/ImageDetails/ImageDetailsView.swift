@@ -53,6 +53,18 @@ struct ImageDetailsView: View {
                             .dynamicTypeSize(...dynamicTypeSize)
                     }
                     if
+                        let authorName = flickrImage.parsedDescription?.authorName,
+                        let authorLink = flickrImage.parsedDescription?.authorLink,
+                        let authorURL = URL(string: authorLink) {
+                        HStack(spacing: 4) {
+                            Text("Author:")
+                            Link("\(authorName)", destination: authorURL)
+                                .foregroundColor(.blue)
+                        }
+                            .font(.caption)
+                            .dynamicTypeSize(...dynamicTypeSize)
+                    }
+                    if
                         let imageWidth = flickrImage.parsedDescription?.imageWidth,
                         let imageHeight = flickrImage.parsedDescription?.imageHeight {
                         Text("Image size: \(imageWidth)x\(imageHeight)")
